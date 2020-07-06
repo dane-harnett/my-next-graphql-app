@@ -1,5 +1,4 @@
 import { ApolloServer, gql } from "apollo-server-micro";
-import Cors from "micro-cors";
 
 const typeDefs = gql`
   type Query {
@@ -18,7 +17,7 @@ const apolloServer = new ApolloServer({
     return {};
   },
 });
-const handler = apolloServer.createHandler({ path: "/api/hello" });
+const handler = apolloServer.createHandler({ path: "/api/graphql" });
 
 export const config = {
   api: {
@@ -26,8 +25,4 @@ export const config = {
   },
 };
 
-const cors = Cors({
-  allowMethods: ["POST", "OPTIONS"],
-});
-
-export default cors(handler);
+export default handler;
